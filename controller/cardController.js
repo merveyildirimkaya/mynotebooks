@@ -1,0 +1,77 @@
+const Card = require("../model/cardModel")
+const Notebook = require("../model/notebookModel")
+
+const createCard= async(req,res,next)=>{
+    
+    try {
+        const notebook= await Notebook.findById({_id:req.params.notebookId})
+            if((req.user._id).equals((notebook.userId).toString())){
+                req.body.notebookId=notebook
+                const newCard = new Card(req.body)
+                await newCard.save()
+                res.json(newCard)
+            }else throw Error("access denied")
+    } catch (error) {
+       next(error)
+    }
+}
+
+const getAllCards= async(req,res,next)=>{
+    
+    try {
+        const notebook= await Notebook.findById({_id:req.params.notebookId})
+            if((req.user._id).equals((notebook.userId).toString())){
+            const cards = await Card.find({notebookId:notebook})
+            res.json(cards)
+        }else throw Error("access denied")
+    } catch (error) {
+       next(error)
+    }
+}
+
+const getCardById= async(req,res,next)=>{
+    try {
+        const card = await Card.findById({_id:req.params.cardId})
+        const notebook= await Notebook.findById({_id:card.notebookId})
+        if((req.user._id).equals((notebook.userId).toString())){
+            res.json(card)
+        }else throw Error("access denied")   
+       
+    } catch (error) {
+        next(error)
+    }
+}
+
+const updateCard= async(req,res,next)=>{
+
+    delete req.body.notebookId
+
+    try {
+        const card = await Card.findById({_id:req.params.cardId})
+        const notebook= await Notebook.findById({_id:card.notebookId})
+        if((req.user._id).equals((notebook.userId).toString())){
+            const card = await Card.findByIdAndUpdate({_id:req.params.cardId},req.body,{new:true,runValidators:true})
+            res.json(card)
+        }else throw Error("access denied")   
+    } catch (error) {
+        next(error)
+    }
+}
+
+const deleteCard= async(req,res,next)=>{
+    try {
+
+        const card = await Card.findById({_id:req.params.cardId})
+        const notebook= await Notebook.findById({_id:card.notebookId})
+        if((req.user._id).equals((notebook.userId).toString())){
+       
+            await Card.findByIdAndDelete({_id:req.params.cardId})
+            res.json({message:"card has been deleted"})
+        }else throw Error("access denied")
+    } catch (error) {
+        next(error)
+    }
+}
+
+
+module.exports = {createCard, getAllCards,getCardById,updateCard,deleteCard}

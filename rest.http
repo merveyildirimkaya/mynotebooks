@@ -1,0 +1,100 @@
+
+POST http://localhost:3000/user/register 
+content-type: application/json
+
+{
+    "name":"merve",
+    "surname":"yildirimkaya",
+    "userName":"merveykya",
+    "password":"123456"
+}
+
+###
+POST http://localhost:3000/user/login
+content-type: application/json
+
+{
+    "userName":"mirimoro",
+    "password":"611094"
+}
+
+###
+DELETE  http://localhost:3000/user
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzEwODc1MTBlYmM2NWViYzhkODAwODIiLCJwYXNzd29yZCI6IiQyYiQxMCRnaFRHUDh0czhUYkZpSW1xWkwvYThPbXY4U0V2RlJhdDZoWmJ1L1FqRklzMThUQS5GL3l4TyIsImlhdCI6MTY2MjAyNzYxOSwiZXhwIjoxNjYyMDMxMjE5fQ.QR1Aa3jW-PJkkUYbayO70yDMEJGRr8DAzX1xWLoVb_4
+###
+PATCH   http://localhost:3000/user
+Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzEwODc5ZTc1ZTdjY2IxZDJmZWJkOWMiLCJwYXNzd29yZCI6IiQyYiQxMCR4bDlZSkw3Rmp4aVQwNmhHZ09RNTR1SC44VjA2U1IzQUR1bXpvd2VhNHF0UWxCUC5BZlp3cSIsImlhdCI6MTY2MjAyNzY4OSwiZXhwIjoxNjYyMDMxMjg5fQ.quDn7GzuM2AYh2dmPP1VP73jzYyJrbrLTP7ok4DpAnI
+content-type: application/json
+
+{
+    "name":"safiyemerve",
+    "surname":"akdamar",
+    "userName":"mirimoro",
+    "password":"1456"
+}
+
+###
+PATCH   http://localhost:3000/user/changePassword
+content-type: application/json
+Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzEwODc5ZTc1ZTdjY2IxZDJmZWJkOWMiLCJwYXNzd29yZCI6IiQyYiQxMCR4bDlZSkw3Rmp4aVQwNmhHZ09RNTR1SC44VjA2U1IzQUR1bXpvd2VhNHF0UWxCUC5BZlp3cSIsImlhdCI6MTY2MjAyNzc1OSwiZXhwIjoxNjYyMDMxMzU5fQ.2qMJEYqBfXuLCxVLJH4KO2VsbzNOSPradRqrDi1q_C0
+
+{
+    "password":"611094"
+}
+
+
+###
+POST http://localhost:3000/notebooks
+content-type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzEwODc5ZTc1ZTdjY2IxZDJmZWJkOWMiLCJwYXNzd29yZCI6IiQyYiQxMCRUV2dvTzJ2VG1ZeEc2S2JKd0k3Q25PNEFvUmk2ZVQyUTlRMk5ZTjRQZEtiMEVSNlpwZGwwNiIsImlhdCI6MTY2MjAyNzgxOCwiZXhwIjoxNjYyMDMxNDE4fQ.au1gg6qddD4tQXpbShjtTXN3WaVOopucYeilwaQ-Ar8
+
+{
+    "language":"SPANISH"
+}
+
+###
+GET http://localhost:3000/notebooks
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzEwODc5ZTc1ZTdjY2IxZDJmZWJkOWMiLCJwYXNzd29yZCI6IiQyYiQxMCRUV2dvTzJ2VG1ZeEc2S2JKd0k3Q25PNEFvUmk2ZVQyUTlRMk5ZTjRQZEtiMEVSNlpwZGwwNiIsImlhdCI6MTY2MjAyNzgxOCwiZXhwIjoxNjYyMDMxNDE4fQ.au1gg6qddD4tQXpbShjtTXN3WaVOopucYeilwaQ-Ar8
+
+###
+DELETE http://localhost:3000/notebooks/6310883975e7ccb1d2febda8
+Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzEwODc5ZTc1ZTdjY2IxZDJmZWJkOWMiLCJwYXNzd29yZCI6IiQyYiQxMCRUV2dvTzJ2VG1ZeEc2S2JKd0k3Q25PNEFvUmk2ZVQyUTlRMk5ZTjRQZEtiMEVSNlpwZGwwNiIsImlhdCI6MTY2MjAyNzgxOCwiZXhwIjoxNjYyMDMxNDE4fQ.au1gg6qddD4tQXpbShjtTXN3WaVOopucYeilwaQ-Ar8
+
+###
+POST  http://localhost:3000/cards/6310884175e7ccb1d2febdab
+content-type: application/json
+Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzEwODc5ZTc1ZTdjY2IxZDJmZWJkOWMiLCJwYXNzd29yZCI6IiQyYiQxMCRUV2dvTzJ2VG1ZeEc2S2JKd0k3Q25PNEFvUmk2ZVQyUTlRMk5ZTjRQZEtiMEVSNlpwZGwwNiIsImlhdCI6MTY2MjAyNzgxOCwiZXhwIjoxNjYyMDMxNDE4fQ.au1gg6qddD4tQXpbShjtTXN3WaVOopucYeilwaQ-Ar8
+
+{
+    "type":"VERB",
+    "phrase":"to buy",
+    "definition": "to pay money to get something",
+    "tabooOne":"purchase",
+    "tabooTwo":"money",
+    "tabooThree":"shop"
+}
+
+###
+GET  http://localhost:3000/cards/getAll/6310884175e7ccb1d2febdab
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzEwODc5ZTc1ZTdjY2IxZDJmZWJkOWMiLCJwYXNzd29yZCI6IiQyYiQxMCRUV2dvTzJ2VG1ZeEc2S2JKd0k3Q25PNEFvUmk2ZVQyUTlRMk5ZTjRQZEtiMEVSNlpwZGwwNiIsImlhdCI6MTY2MjAyNzgxOCwiZXhwIjoxNjYyMDMxNDE4fQ.au1gg6qddD4tQXpbShjtTXN3WaVOopucYeilwaQ-Ar8
+
+###
+GET  http://localhost:3000/cards/6310897823a63b7a13ea81c7
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzEwODc5ZTc1ZTdjY2IxZDJmZWJkOWMiLCJwYXNzd29yZCI6IiQyYiQxMCRUV2dvTzJ2VG1ZeEc2S2JKd0k3Q25PNEFvUmk2ZVQyUTlRMk5ZTjRQZEtiMEVSNlpwZGwwNiIsImlhdCI6MTY2MjAyNzgxOCwiZXhwIjoxNjYyMDMxNDE4fQ.au1gg6qddD4tQXpbShjtTXN3WaVOopucYeilwaQ-Ar8
+
+###
+PATCH   http://localhost:3000/cards/6310897823a63b7a13ea81c7
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzEwODc5ZTc1ZTdjY2IxZDJmZWJkOWMiLCJwYXNzd29yZCI6IiQyYiQxMCRUV2dvTzJ2VG1ZeEc2S2JKd0k3Q25PNEFvUmk2ZVQyUTlRMk5ZTjRQZEtiMEVSNlpwZGwwNiIsImlhdCI6MTY2MjAyNzgxOCwiZXhwIjoxNjYyMDMxNDE4fQ.au1gg6qddD4tQXpbShjtTXN3WaVOopucYeilwaQ-Ar8
+
+{
+    "phrase": "to go",
+    "definition": "to move from somewhere to another place",
+    "tabooOne": "comasdfasdmute",
+    "tabooTwo": "driasdfve",
+    "tabooThree": "chasdfange"
+}
+
+###
+DELETE http://localhost:3000/cards/6310897823a63b7a13ea81c7
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzEwODc5ZTc1ZTdjY2IxZDJmZWJkOWMiLCJwYXNzd29yZCI6IiQyYiQxMCRUV2dvTzJ2VG1ZeEc2S2JKd0k3Q25PNEFvUmk2ZVQyUTlRMk5ZTjRQZEtiMEVSNlpwZGwwNiIsImlhdCI6MTY2MjAyNzgxOCwiZXhwIjoxNjYyMDMxNDE4fQ.au1gg6qddD4tQXpbShjtTXN3WaVOopucYeilwaQ-Ar8
