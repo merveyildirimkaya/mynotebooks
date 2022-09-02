@@ -1,8 +1,10 @@
 const User = require("../model/userModel")
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
-const createError = require('http-errors')
+//const createError = require('http-errors')
 const jwt = require('jsonwebtoken');
+
+
 
 const register=(req,res,next)=>{
     try {
@@ -14,7 +16,11 @@ const register=(req,res,next)=>{
             newUser.password=hash
             try {
                 await newUser.save();
-                res.json(newUser)
+                res.json({
+                    name:newUser.name,
+                    surname:newUser.surname,
+                    userName:newUser.userName
+                })
             } catch (error) {
                 next(error)
             }
@@ -26,7 +32,6 @@ const register=(req,res,next)=>{
         })
     } catch (error) {
      
-        error.statusCode=404
         next(error)
      
     }
@@ -46,7 +51,14 @@ const login= async(req,res,next)=>{
         }
         else if(result){
             const token = jwt.sign({userId:user._id, password:user.password}, 'mynotebook',{ expiresIn: '1h' });
-            res.json({token:token})
+            res.json({
+                user:{
+                    _id:user._id,
+                    name:user.name,
+                    surname:user.surname,
+                    userName:user.userName
+                },
+                token:token})
         }else
         {
             res.json({
@@ -57,7 +69,6 @@ const login= async(req,res,next)=>{
       }
       );
     } catch (error) {
-  
         next(error)
     }
 }
@@ -71,7 +82,10 @@ const updateProfil=async(req,res,next)=>{
 
     try {
         const updatedUser=await User.findByIdAndUpdate({_id:req.user._id},req.body, {new: true,runValidators:true})
-        res.json(updatedUser)
+        res.json({  name:updatedUser.name,
+                    surname:updatedUser.surname,
+                    userName:updatedUser.userName
+                })
         
     }catch(error){
         next(error)
@@ -80,21 +94,20 @@ const updateProfil=async(req,res,next)=>{
 
 const changePassword =async(req,res)=>{
 
-
-
     try {
             bcrypt.hash(req.body.password,saltRounds,async function(err,result){
                 const updatedPassword=await User.findByIdAndUpdate({_id:req.user._id},{password:result}, {new: true,runValidators:true}) 
-                res.json(updatedPassword)
+                res.json({
+                    user: updatedPassword.userName ,
+                    message:"Password has been changed"})
             })
         
     }catch(error){
-     
        next(error)
     }
 }
 
-const deleteAccount=async(req,res)=>{
+const deleteAccount=async(req,res,next)=>{
     try { 
             await User.deleteOne({_id:req.user._id})
             res.json({message:"User has been deleted"})

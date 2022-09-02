@@ -1,0 +1,25 @@
+{
+    "user":{
+        "name":"test",
+        "surname":"test",
+        "userName":"test",
+        "password":"test"
+    },
+    "login":{
+        "userName": "test",
+        "password": "test"
+    },
+    "update":{
+        "name":"update",
+        "surname":"update",
+        "userName":"update",
+        "password":"update"
+    },
+    "badReq":{
+        "userName":"test",
+        "password":"wrongPassword"
+    },
+    "changePassword":{
+        "password":"updatedPass"
+    }
+}

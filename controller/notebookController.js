@@ -6,7 +6,10 @@ const createNotebook= async(req,res,next)=>{
             req.body.userId=req.user
             const newNotebook= new Notebook(req.body)
             await newNotebook.save()
-            res.json(newNotebook)
+            res.json({user:newNotebook.userId._id,
+                      _id:newNotebook._id,
+                     notebook:newNotebook.language
+            })
         
     } catch (error) {
         next(error)
@@ -15,7 +18,7 @@ const createNotebook= async(req,res,next)=>{
 }
 const getNotebooks = async (req,res,next)=>{
     try {    
-            const myNotebooks = await Notebook.find({userId:req.user})
+            const myNotebooks = await Notebook.find({userId:req.user},'_id userId language')
             res.json(myNotebooks)
         
     } catch (error) {
