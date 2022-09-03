@@ -5,9 +5,17 @@
         "userName":"test",
         "password":"test"
     },
+    "helperUser":{
+        "userName":"reginaflangy",
+        "password":"123456"
+    },
     "login":{
         "userName": "test",
         "password": "test"
+    },
+    "notFound":{
+        "userName": "absent",
+        "password": "absent"
     },
     "update":{
         "name":"update",
@@ -15,11 +23,43 @@
         "userName":"update",
         "password":"update"
     },
+    "updateError":{
+        "name":"chandler",
+        "surname":"bing",
+        "userName":"chandlerbing",
+        "password":"123456"
+    },
     "badReq":{
         "userName":"test",
         "password":"wrongPassword"
     },
     "changePassword":{
         "password":"updatedPass"
+    },
+    "notebook":{
+        "language":"FRENCH"
+    },
+    "notebookError":{
+        "language":"UNEXISTANT LANGUAGE"
+    },
+    "card":{
+        "type":"VERB",
+        "phrase":"to buy",
+        "definition": "to pay money to get something",
+        "tabooOne":"purchase",
+        "tabooTwo":"money",
+        "tabooThree":"shop"
+    },
+    "cardUpdate":{
+        "type":"VERB",
+        "phrase":"to test",
+        "definition": "to test",
+        "tabooOne":"testest",
+        "tabooTwo":"test",
+        "tabooThree":"testst"
+    },
+    "helperCard":{
+        "_id":"6313966a66916af0489a211c",
+        "notebookId":"6313965266916af0489a2117"
     }
 }

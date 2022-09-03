@@ -8,8 +8,8 @@ const authMiddleware = async (req,res,next)=>{
            
             const user= await User.findOne({_id:verifiedUser.userId}) 
             req.user=user
-        } 
-        next()
+            next()
+        } else throw Error("Please Authorize")
     } catch (error) {
         next(error)
     }

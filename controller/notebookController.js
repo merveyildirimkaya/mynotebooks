@@ -6,10 +6,8 @@ const createNotebook= async(req,res,next)=>{
             req.body.userId=req.user
             const newNotebook= new Notebook(req.body)
             await newNotebook.save()
-            res.json({user:newNotebook.userId._id,
-                      _id:newNotebook._id,
-                     notebook:newNotebook.language
-            })
+            const notebook = await Notebook.findById({_id:newNotebook._id},'-__v')
+            res.json(notebook)
         
     } catch (error) {
         next(error)
@@ -18,9 +16,10 @@ const createNotebook= async(req,res,next)=>{
 }
 const getNotebooks = async (req,res,next)=>{
     try {    
-            const myNotebooks = await Notebook.find({userId:req.user},'_id userId language')
-            res.json(myNotebooks)
-        
+            const myNotebooks = await Notebook.find({userId:req.user},'-__v')
+            if(myNotebooks.length>0){
+            res.json(myNotebooks)}
+            else throw Error("You have not created any notebook yet")
     } catch (error) {
         next(error)
     }

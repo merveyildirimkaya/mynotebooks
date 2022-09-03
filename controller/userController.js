@@ -6,51 +6,32 @@ const jwt = require('jsonwebtoken');
 
 
 
-const register=(req,res,next)=>{
+
+const register= async (req,res,next)=>{
     try {
         const newUser = new User(req.body)
-
-        bcrypt.hash(req.body.password, saltRounds,  async function(err, hash) {
-            
-            if(!err){
-            newUser.password=hash
-            try {
+        const  hash =  await bcrypt.hash(req.body.password, saltRounds)
+       
+        if(hash){
+                newUser.password=hash
                 await newUser.save();
-                res.json({
-                    name:newUser.name,
-                    surname:newUser.surname,
-                    userName:newUser.userName
-                })
-            } catch (error) {
-                next(error)
-            }
-            
-        }else res.json({
-            statusCode:"400",
-            message:"error while crypting password"
-        })
-        })
-    } catch (error) {
-     
+                const user = await User.findOne({userName: newUser.userName},'-__v -password')
+                res.json(user)
+        }else throw Error("something went wrong")
+        }catch (error){
         next(error)
-     
     }
+   
 }
 const login= async(req,res,next)=>{
   
     try {
       const user= await User.findOne({userName:req.body.userName})
 
-        
-      bcrypt.compare(req.body.password, user.password, function(err, result) {
-        if(err){
-            res.json({
-                statusCode:400,
-                message:"Something went wrong"
-            })
-        }
-        else if(result){
-            const token = jwt.sign({userId:user._id, password:user.password}, 'mynotebook',{ expiresIn: '1h' });
+      const result= await bcrypt.compare(req.body.password, user.password)
+
+      if(result){
+      const token = jwt.sign({userId:user._id, password:user.password}, 'mynotebook',{ expiresIn: '1h' });
             res.json({
                 user:{
                     _id:user._id,
@@ -59,15 +40,7 @@ const login= async(req,res,next)=>{
                     userName:user.userName
                 },
                 token:token})
-        }else
-        {
-            res.json({
-                statusCode:400,
-                message:"Invalid Credentials"
-            })
-        }
-      }
-      );
+        } else throw Error("Invalid Credentials")
     } catch (error) {
         next(error)
     }
@@ -100,8 +73,7 @@ const changePassword =async(req,res)=>{
                 res.json({
                     user: updatedPassword.userName ,
                     message:"Password has been changed"})
-            })
-        
+            })      
     }catch(error){
        next(error)
     }
@@ -110,8 +82,7 @@ const changePassword =async(req,res)=>{
 const deleteAccount=async(req,res,next)=>{
     try { 
             await User.deleteOne({_id:req.user._id})
-            res.json({message:"User has been deleted"})
-        
+            res.json({message:"User has been deleted"})     
     }catch(error){
        next(error)
     }
