@@ -27,10 +27,18 @@ describe('User Route', function() {
 
     it('should post user', async()=> {
       const res =  await request(app).post('/user/register').set('Accept', 'application/json').send(testData.user) 
-         ///HATAYA STATUS KOD VE MESAJ YOLLA
+
          expect(res.status).toBe(200)
          expect(res.body.statusCode).toBe(11000)
          expect(res.body.message).toBe("Credential is already in use")
+       
+     });
+    
+    it('should not post user', async()=> {
+      const res =  await request(app).post('/user/register').set('Accept', 'application/json').send(testData.invalidUser) 
+
+         expect(res.status).toBe(200)
+         expect(res.body.message).toBe("BadRequestError: Bad Request")
        
      });
  
@@ -50,7 +58,7 @@ describe('User Route', function() {
       const res =  await request(app).post('/user/login').set('Accept', 'application/json').send(testData.badReq) 
          
           expect(res.status).toBe(200)
-          expect(res.body.message).toBe("Invalid Credentials")
+          expect(res.body.message).toBe("BadRequestError: Invalid Credentials")
           expect(res.body.token).toBeUndefined()
 
      });
@@ -85,18 +93,6 @@ describe('User Route', function() {
 
      });
 
-     it('should not change password', async()=> {
-       await db.disconnectDatabase()
-      const res =  await request(app).patch('/user/changePassword').set('Accept', 'application/json')
-      .set('Authorization',token).send(testData.changePassword) 
-         
-          expect(res.status).toBe(200)
-      
-          expect(res.body.message).toBe("Client must be connected before running operations")
-      await db.connectDatabase()
-     });
-
-
      it('should change password', async()=> {
       const res =  await request(app).patch('/user/changePassword').set('Accept', 'application/json')
       .set('Authorization',token).send(testData.changePassword) 
@@ -112,8 +108,7 @@ describe('User Route', function() {
       .send(testData.changePassword) 
          
           expect(res.status).toBe(200)
-          expect(res.body.message).toBe("Please Authorize")
-
+          expect(res.body.message).toBe("UnauthorizedError: Please login to view this page.")
      });
 
      it('should change password', async()=> {
@@ -136,7 +131,7 @@ describe('User Route', function() {
         .set('Authorization',token)
            
             expect(res.status).toBe(200)
-            expect(res.body.message).toBe("You have not created any notebook yet")
+            expect(res.body.message).toBe("NotFoundError: Not Found")
     
        });
 
@@ -206,7 +201,7 @@ describe('User Route', function() {
         .set('Authorization',token).send(testData.card) 
            
             expect(res.status).toBe(200)
-            expect(res.body.message).toBe("notebook does not belong to you")
+            expect(res.body.message).toBe("UnauthorizedError: Access denied!")
 
     
        });
@@ -216,7 +211,7 @@ describe('User Route', function() {
         .set('Authorization',token)
            
             expect(res.status).toBe(200)
-            expect(res.body.message).toBe("notebook does not belong to you")
+            expect(res.body.message).toBe("UnauthorizedError: Access denied!")
     
        });
 
@@ -237,7 +232,7 @@ describe('User Route', function() {
         .set('Authorization',token)
            
             expect(res.status).toBe(200)
-            expect(res.body.message).toBe("notebook does not belong to you")
+            expect(res.body.message).toBe("UnauthorizedError: Access denied!")
        });
 
        it('get card by Id', async()=> {
@@ -263,7 +258,7 @@ describe('User Route', function() {
            
            
         expect(res.status).toBe(200)
-        expect(res.body.message).toBe("notebook does not belong to you")
+        expect(res.body.message).toBe("UnauthorizedError: Access denied!")
     
     
        });
@@ -295,7 +290,7 @@ describe('User Route', function() {
         .set('Authorization',token)
            
         expect(res.status).toBe(200)
-        expect(res.body.message).toBe("notebook does not belong to you")
+        expect(res.body.message).toBe("UnauthorizedError: Access denied!")
     
        });  
 
@@ -318,7 +313,7 @@ describe('User Route', function() {
         .set('Authorization',wrongToken)
 
         expect(res.status).toBe(200)
-        expect(res.body.message).toBe("access denied")
+        expect(res.body.message).toBe("UnauthorizedError: Access denied!")
        })
        
      

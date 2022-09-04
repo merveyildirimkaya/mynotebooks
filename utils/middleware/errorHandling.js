@@ -6,7 +6,6 @@ const handleError = (err, req, res, next)=>{
         })
     }
     else res.json({
-        statusCode:err.statusCode,
         message:err.message
     })
 }

@@ -1,24 +1,23 @@
 const User = require("../model/userModel")
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
-//const createError = require('http-errors')
+const createError = require('http-errors')
 const jwt = require('jsonwebtoken');
-
-
 
 
 const register= async (req,res,next)=>{
     try {
-        const newUser = new User(req.body)
-        const  hash =  await bcrypt.hash(req.body.password, saltRounds)
+        const {error,value} = User.joiValidationforRegister(req.body)
+        if(error) throw Error(createError(400,"Bad Request"))
+        const newUser = new User(value)
+        const  hash =  await bcrypt.hash(value.password, saltRounds)
        
-        if(hash){
-                newUser.password=hash
-                await newUser.save();
-                const user = await User.findOne({userName: newUser.userName},'-__v -password')
-                res.json(user)
-        }else throw Error("something went wrong")
-        }catch (error){
+            newUser.password=hash
+            await newUser.save();
+            const user = await User.findOne({userName: newUser.userName},'-__v -password')
+            res.json(user)
+       
+            }catch (error){
         next(error)
     }
    
@@ -26,21 +25,21 @@ const register= async (req,res,next)=>{
 const login= async(req,res,next)=>{
   
     try {
-      const user= await User.findOne({userName:req.body.userName})
 
-      const result= await bcrypt.compare(req.body.password, user.password)
+      const {error,value} = User.joiValidation(req.body)
+      if(error) throw Error(createError(400,"Bad Request"))
+
+      const password= await User.findOne({userName:value.userName},'password')
+
+      const result= await bcrypt.compare(req.body.password, password.password)
 
       if(result){
+      const user = await User.findOne({userName:value.userName},'-__v -password')
       const token = jwt.sign({userId:user._id, password:user.password}, 'mynotebook',{ expiresIn: '1h' });
             res.json({
-                user:{
-                    _id:user._id,
-                    name:user.name,
-                    surname:user.surname,
-                    userName:user.userName
-                },
+                user:user,
                 token:token})
-        } else throw Error("Invalid Credentials")
+        } else throw Error(createError(400,"Invalid Credentials"))
     } catch (error) {
         next(error)
     }
@@ -54,11 +53,12 @@ const updateProfil=async(req,res,next)=>{
     delete req.body.__v
 
     try {
-        const updatedUser=await User.findByIdAndUpdate({_id:req.user._id},req.body, {new: true,runValidators:true})
-        res.json({  name:updatedUser.name,
-                    surname:updatedUser.surname,
-                    userName:updatedUser.userName
-                })
+
+        const {error,value} = User.joiValidation(req.body)
+        if(error) throw Error(createError(400,"Bad Request"))
+
+        const updatedUser=await User.findByIdAndUpdate({_id:req.user._id},value, {new: true, select: "name surname userName",runValidators:true})
+        res.json(updatedUser)
         
     }catch(error){
         next(error)
@@ -66,14 +66,17 @@ const updateProfil=async(req,res,next)=>{
 }
 
 const changePassword =async(req,res)=>{
+    
+    const {error,value} = User.joiValidation(req.body)
+    if(error) throw Error(createError(400,"Bad Request"))
 
     try {
-            bcrypt.hash(req.body.password,saltRounds,async function(err,result){
+            const result = await bcrypt.hash(value.password,saltRounds)
                 const updatedPassword=await User.findByIdAndUpdate({_id:req.user._id},{password:result}, {new: true,runValidators:true}) 
                 res.json({
                     user: updatedPassword.userName ,
-                    message:"Password has been changed"})
-            })      
+                    message:"Password has been changed"
+                })      
     }catch(error){
        next(error)
     }

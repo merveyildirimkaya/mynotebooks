@@ -17,7 +17,6 @@ const cardSchema = new Schema({
         required:true,
         trim:true,
         upperCase:true,
-        uniqe:true
     },
     definition:{
         type: String,

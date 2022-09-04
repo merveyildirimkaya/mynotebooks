@@ -1,16 +1,13 @@
 
-GET http://localhost:3000/user
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzEwYTcyZDkxNWZjNjkyMWE0MzQ0MmMiLCJwYXNzd29yZCI6IiQyYiQxMCR2ZE1rVWpCdGtELjdnSmZYL3RpL0dPTEdpODVCWUd6SXNlcDM2MlZJTG5RZVRhR1Y3VVF1eSIsImlhdCI6MTY2MjA2MTU0MSwiZXhwIjoxNjYyMDY1MTQxfQ.uZmlBeuRKAnpbQ8w6SrDKA_Q9mq8pBRZpXIShGOdEjI
-
 ###
 POST http://localhost:3000/user/register 
 content-type: application/json
 
 {
-    "name":"merve",
-    "surname":"yildirimkaya",
-    "userName":"sanane",
-    "password":"123456"
+    "name":"testing",
+    "surname":"testing",
+    "userName":"tng",
+    "password":"testing"
 }
 
 ###
@@ -24,17 +21,17 @@ content-type: application/json
 
 ###
 DELETE  http://localhost:3000/user
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzEwYjRjYjZkMDkxODhhMzY5NzM5NjYiLCJwYXNzd29yZCI6IiQyYiQxMCQuZG9JRTZRUmp3eWg5MHpEa0hEbFkub3g2VEU3VExXTjI1NHVsYnZqUDFreGN4Rkc3RVRxdSIsImlhdCI6MTY2MjAzOTI3MiwiZXhwIjoxNjYyMDQyODcyfQ.IuFrXQTICykPtVtw07W0Z8WerMFBrCROwCaHxm5XDZ0
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzE0NTRmZjhmZTJiMmVjMjEwYzFjMTkiLCJwYXNzd29yZCI6IiQyYiQxMCRBdGlWLmF2eG1sdjJneGk4dE54ZjdPNTBaaUNtU0M5Mm1rdkNBUS9oM3V4ZGc4LlBjVzZkcSIsImlhdCI6MTY2MjI3NzA4MywiZXhwIjoxNjYyMjgwNjgzfQ.oesiFBYrIl_tuHotjldQ_YA87jMzmZ_aw_5umVL35EM
 ###
 PATCH   http://localhost:3000/user
-Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzEwODc5ZTc1ZTdjY2IxZDJmZWJkOWMiLCJwYXNzd29yZCI6IiQyYiQxMCRUV2dvTzJ2VG1ZeEc2S2JKd0k3Q25PNEFvUmk2ZVQyUTlRMk5ZTjRQZEtiMEVSNlpwZGwwNiIsImlhdCI6MTY2MjA0MjQ3MiwiZXhwIjoxNjYyMDQ2MDcyfQ.QXXX7Hkvv0n0gLviVesOaU8HISEgD6fYcXsDPwwaipI
+Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzE0NmFlZWFkNDQ0OTRjYjk5YjU4NzYiLCJwYXNzd29yZCI6IiQyYiQxMCQ2VHczTDhFNkdkY2VsUkI5Z1VhaTYuTjBtWTJvbFZHdGVMSUp4LzA1bzRGSThSb3ZCRXd1VyIsImlhdCI6MTY2MjI4MjQ5NSwiZXhwIjoxNjYyMjg2MDk1fQ.YRFV74eCZWkEUgNLxKlQgV8hfZi4BiRH5sMu05je2As
 content-type: application/json
 
 {
-    "name":"merve",
-    "surname":"akdamar",
-    "userName":"mirimoro",
-    "password":"1456"
+    "name":"updated",
+    "surname":"updated",
+    "userName":"updated",
+    "password":"updated"
 }
 
 ###
@@ -50,10 +47,10 @@ Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzEwODc5ZTc1Z
 ###
 POST http://localhost:3000/notebooks
 content-type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzBlMzBmMjExYzVlODY0NzM5YjQwMDciLCJwYXNzd29yZCI6IiQyYiQxMCRkb3JteWVPdHRiZkIyaE9YRFFuM0plaVE3MU5CSjNQaXc4SkFuZ0ZNMGkzeWdFM2VjT3NKNiIsImlhdCI6MTY2MjIyODAyOSwiZXhwIjoxNjYyMjMxNjI5fQ.AesWBXL90bOsIsghDN_zA7u9nk8VdekrUgY2K2ppOtc
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzBlMzBmMjExYzVlODY0NzM5YjQwMDciLCJwYXNzd29yZCI6IiQyYiQxMCRkb3JteWVPdHRiZkIyaE9YRFFuM0plaVE3MU5CSjNQaXc4SkFuZ0ZNMGkzeWdFM2VjT3NKNiIsImlhdCI6MTY2MjI3NzgwMSwiZXhwIjoxNjYyMjgxNDAxfQ.J4BOZDe2Cp6aa9ISjE0SuMOFQztuuQqKYShb87QOlOY
 
 {
-    "language":"ENGLISH"
+    "language":"GERMAN"
 }
 
 ###
@@ -61,21 +58,21 @@ GET http://localhost:3000/notebooks
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzEzNjU1OWMwMmNlNDYyZmNjMTZhYmEiLCJwYXNzd29yZCI6IiQyYiQxMCRuOXBHQ0NsZ2xUTnFhMG5pZElmWEIucGhCUW1rT2ZQL0FaUkJEbElrWkY4YkZZVERUc2tqSyIsImlhdCI6MTY2MjIxNTg1MCwiZXhwIjoxNjYyMjE5NDUwfQ.rKFxRHW5TbYNNrvq3m6trZuK_WECL4XIsg2HyxWVJXA
 
 ###
-DELETE http://localhost:3000/notebooks/6310883975e7ccb1d2febda8
-Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzEwODc5ZTc1ZTdjY2IxZDJmZWJkOWMiLCJwYXNzd29yZCI6IiQyYiQxMCRUV2dvTzJ2VG1ZeEc2S2JKd0k3Q25PNEFvUmk2ZVQyUTlRMk5ZTjRQZEtiMEVSNlpwZGwwNiIsImlhdCI6MTY2MjAyNzgxOCwiZXhwIjoxNjYyMDMxNDE4fQ.au1gg6qddD4tQXpbShjtTXN3WaVOopucYeilwaQ-Ar8
+DELETE http://localhost:3000/notebooks/631456b9607861a2036f55da
+Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzBlMzBmMjExYzVlODY0NzM5YjQwMDciLCJwYXNzd29yZCI6IiQyYiQxMCRkb3JteWVPdHRiZkIyaE9YRFFuM0plaVE3MU5CSjNQaXc4SkFuZ0ZNMGkzeWdFM2VjT3NKNiIsImlhdCI6MTY2MjI3NzI4OCwiZXhwIjoxNjYyMjgwODg4fQ.qex1HyEkwYdxFW5MyyDd09Pd4JE8qXjprT6I8ACs5qo
 
 ###
-POST  http://localhost:3000/cards/6313965266916af0489a2117
+POST  http://localhost:3000/cards/631458b6df3748a4989f926f
 content-type: application/json
-Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzBlMzBmMjExYzVlODY0NzM5YjQwMDciLCJwYXNzd29yZCI6IiQyYiQxMCRkb3JteWVPdHRiZkIyaE9YRFFuM0plaVE3MU5CSjNQaXc4SkFuZ0ZNMGkzeWdFM2VjT3NKNiIsImlhdCI6MTY2MjIyODAyOSwiZXhwIjoxNjYyMjMxNjI5fQ.AesWBXL90bOsIsghDN_zA7u9nk8VdekrUgY2K2ppOtc
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzBlMzBmMjExYzVlODY0NzM5YjQwMDciLCJpYXQiOjE2NjIzMDEyNTUsImV4cCI6MTY2MjMwNDg1NX0.OkOz4KRjR21fRA4C5rS7sOlRTYm61WueXZDx8g4dt8k
 
 {
     "type":"VERB",
-    "phrase":"to buy",
-    "definition": "to pay money to get something",
-    "tabooOne":"purchase",
-    "tabooTwo":"money",
-    "tabooThree":"shop"
+    "phrase":"to try",
+    "definition": "to try",
+    "tabooOne":"try",
+    "tabooTwo":"try",
+    "tabooThree":"try"
 }
 
 ###

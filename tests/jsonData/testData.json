@@ -1,27 +1,33 @@
 {
     "user":{
-        "name":"test",
-        "surname":"test",
-        "userName":"test",
-        "password":"test"
+        "name":"testing",
+        "surname":"testing",
+        "userName":"testing",
+        "password":"testing"
+    },
+    "invalidUser":{
+        "name":"testing",
+        "surname":"testing",
+        "userName":"te",
+        "password":"testing"
     },
     "helperUser":{
         "userName":"reginaflangy",
         "password":"123456"
     },
     "login":{
-        "userName": "test",
-        "password": "test"
+        "userName": "testing",
+        "password": "testing"
     },
     "notFound":{
         "userName": "absent",
         "password": "absent"
     },
     "update":{
-        "name":"update",
-        "surname":"update",
-        "userName":"update",
-        "password":"update"
+        "name":"updated",
+        "surname":"updated",
+        "userName":"updated",
+        "password":"updated"
     },
     "updateError":{
         "name":"chandler",
@@ -30,11 +36,11 @@
         "password":"123456"
     },
     "badReq":{
-        "userName":"test",
-        "password":"wrongPassword"
+        "userName":"testing",
+        "password":"wrongPass"
     },
     "changePassword":{
-        "password":"updatedPass"
+        "password":"updatePass"
     },
     "notebook":{
         "language":"FRENCH"
@@ -59,7 +65,7 @@
         "tabooThree":"testst"
     },
     "helperCard":{
-        "_id":"6313966a66916af0489a211c",
-        "notebookId":"6313965266916af0489a2117"
+        "_id":"6314b456e3a1c4397c4f1902",
+        "notebookId":"631458b6df3748a4989f926f"
     }
 }

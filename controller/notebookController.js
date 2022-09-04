@@ -1,5 +1,5 @@
 const Notebook= require("../model/notebookModel")
-
+const createError = require('http-errors')
 const createNotebook= async(req,res,next)=>{
 
     try {
@@ -19,7 +19,7 @@ const getNotebooks = async (req,res,next)=>{
             const myNotebooks = await Notebook.find({userId:req.user},'-__v')
             if(myNotebooks.length>0){
             res.json(myNotebooks)}
-            else throw Error("You have not created any notebook yet")
+            else throw Error(createError(404,"Not Found"))
     } catch (error) {
         next(error)
     }
@@ -28,11 +28,8 @@ const getNotebooks = async (req,res,next)=>{
 const deleteNoteBook = async(req,res,next)=>{
     try 
     { 
-        const notebook = await Notebook.findById(req.params.notebookId)
-                if ((req.user._id).equals((notebook.userId).toString())){
-                    await Notebook.deleteOne({_id:notebook._id})
-                  res.json({message:"notebook has been deleted"})
-                }else throw new Error("access denied")
+        await Notebook.deleteOne({_id:req.notebook._id})
+        res.json({message:"notebook has been deleted"})
     } catch (error) {
        next(error)
     }
