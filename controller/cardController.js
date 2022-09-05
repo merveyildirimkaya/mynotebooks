@@ -1,13 +1,17 @@
 const Card = require("../model/cardModel")
-
+const createError = require('http-errors')
 const createCard= async(req,res,next)=>{
-    
+  
     try {
+            const existingCards = await Card.find({phrase:req.body.phrase, notebookId: req.notebook._id})
+            if(existingCards.length>0) throw Error(createError(400,"Already Exists!"))
+            
             req.body.notebookId=req.notebook._id
             const newCard = new Card(req.body)
             await newCard.save()
             const card = await Card.findById({_id:newCard._id},'-__v')
             return res.json(card)
+
     } catch (error) {
        next(error)
     }

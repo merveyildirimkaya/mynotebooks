@@ -1,7 +1,7 @@
 const request = require('supertest');
 const app = require("../app")
 const testData = require("./jsonData/testData.json")
-const db = require("../utils/db/dbConnection")
+
 describe('User Route', function() {
  
 
@@ -25,19 +25,18 @@ describe('User Route', function() {
       
     });
 
-    it('should post user', async()=> {
+    it('should not post user if the userName is already in use', async()=> {
       const res =  await request(app).post('/user/register').set('Accept', 'application/json').send(testData.user) 
 
-         expect(res.status).toBe(200)
-         expect(res.body.statusCode).toBe(11000)
-         expect(res.body.message).toBe("Credential is already in use")
+         expect(res.status).toBe(400)
+         expect(res.body.message).toBe("Username is already in use")
        
      });
     
-    it('should not post user', async()=> {
+    it('should not post user if there is validation error ', async()=> {
       const res =  await request(app).post('/user/register').set('Accept', 'application/json').send(testData.invalidUser) 
 
-         expect(res.status).toBe(200)
+         expect(res.status).toBe(400)
          expect(res.body.message).toBe("BadRequestError: Bad Request")
        
      });
@@ -54,19 +53,18 @@ describe('User Route', function() {
           token = res.body.token
      });
 
-     it('should return bad req', async()=> {
+     it('should return bad req if password is wrong while logging in', async()=> {
       const res =  await request(app).post('/user/login').set('Accept', 'application/json').send(testData.badReq) 
          
-          expect(res.status).toBe(200)
+          expect(res.status).toBe(400)
           expect(res.body.message).toBe("BadRequestError: Invalid Credentials")
           expect(res.body.token).toBeUndefined()
 
      });
 
-     it('should return not found', async()=> {
+     it('should return not found if user has not registered yet', async()=> {
       const res =  await request(app).post('/user/login').set('Accept', 'application/json').send(testData.notFound) 
-         ///HATAYA STATUS KOD VE MESAJ YOLLA
-          expect(res.status).toBe(200)
+          expect(res.status).toBe(400)
           expect(res.body.message).not.toBeNull()
           expect(res.body.token).toBeUndefined()
 
@@ -84,12 +82,12 @@ describe('User Route', function() {
 
      });
 
-     it('should not update profile', async()=> {
+     it('should not update profile if the username is already in use by another user', async()=> {
       const res =  await request(app).patch('/user').set('Accept', 'application/json')
       .set('Authorization',token).send(testData.updateError) 
          
-          expect(res.status).toBe(200)
-          expect(res.body.message).not.toBeNull()
+          expect(res.status).toBe(400)
+          expect(res.body.message).toBe("Username is already in use")
 
      });
 
@@ -103,19 +101,19 @@ describe('User Route', function() {
 
      });
 
-     it('should throw auth error', async()=> {
+     it('should throw auth error if user has not provided any jwt token', async()=> {
       const res =  await request(app).patch('/user/changePassword').set('Accept', 'application/json')
       .send(testData.changePassword) 
          
-          expect(res.status).toBe(200)
-          expect(res.body.message).toBe("UnauthorizedError: Please login to view this page.")
+          expect(res.status).toBe(400)
+          expect(res.body.message).toBe("UnauthorizedError: Please first login!")
      });
 
-     it('should change password', async()=> {
+     it('should not change password if token is not valid', async()=> {
       const res =  await request(app).patch('/user/changePassword').set('Accept', 'application/json')
       .set('Authorization',"randomletters").send(testData.changePassword) 
          
-          expect(res.status).toBe(200)
+          expect(res.status).toBe(400)
           expect(res.body.message).toBe("jwt malformed")
 
      });
@@ -130,7 +128,7 @@ describe('User Route', function() {
         const res =  await request(app).get('/notebooks').set('Accept', 'application/json')
         .set('Authorization',token)
            
-            expect(res.status).toBe(200)
+            expect(res.status).toBe(400)
             expect(res.body.message).toBe("NotFoundError: Not Found")
     
        });
@@ -149,12 +147,12 @@ describe('User Route', function() {
   
      });
 
-     it('dont create notebook', async()=> {
+     it('should not create notebook if there is a validation error', async()=> {
  
       const res =  await request(app).post('/notebooks').set('Accept', 'application/json')
       .set('Authorization',token).send(testData.notebookError) 
          
-          expect(res.status).toBe(200)
+          expect(res.status).toBe(400)
           expect(res.body.message).not.toBeNull()
     
      });
@@ -163,17 +161,11 @@ describe('User Route', function() {
     it('get notebooks', async()=> {
   
       const res =  await request(app).get('/notebooks').set('Accept', 'application/json')
-      .set('Authorization',token)
-         
+      .set('Authorization',token)     
           expect(res.status).toBe(200)
           expect(res.body).toHaveLength(1)
-  
      });
-
     });
-
-    
-
 
     describe('Card Route', function() {
     
@@ -195,23 +187,33 @@ describe('User Route', function() {
             cardId= res.body._id
     
        });
-       it('dont create card', async()=> {
+
+       it('sould not create card if it already exists', async()=> {
+    
+        const res =  await request(app).post('/cards/'+ notebookId).set('Accept', 'application/json')
+        .set('Authorization',token).send(testData.card) 
+           
+            expect(res.status).toBe(400)
+            expect(res.body.message).toBe("BadRequestError: Already Exists!")
+       });
+
+       it('should not create card if the notebook belongs to any another user', async()=> {
     
         const res =  await request(app).post('/cards/'+ testData.helperCard.notebookId).set('Accept', 'application/json')
         .set('Authorization',token).send(testData.card) 
            
-            expect(res.status).toBe(200)
-            expect(res.body.message).toBe("UnauthorizedError: Access denied!")
+            expect(res.status).toBe(400)
+            expect(res.body.message).toBe("ForbiddenError: Access denied!")
 
     
        });
-       it('should not get cards', async()=> {
+       it('should not get cards of any other user', async()=> {
     
         const res =  await request(app).get('/cards/getAll/'+ testData.helperCard.notebookId).set('Accept', 'application/json')
         .set('Authorization',token)
            
-            expect(res.status).toBe(200)
-            expect(res.body.message).toBe("UnauthorizedError: Access denied!")
+            expect(res.status).toBe(400)
+            expect(res.body.message).toBe("ForbiddenError: Access denied!")
     
        });
 
@@ -226,13 +228,13 @@ describe('User Route', function() {
        });
 
                  
-       it('dont get card by Id', async()=> {
+       it('dont get card of any other user', async()=> {
     
         const res =  await request(app).get('/cards/'+ testData.helperCard._id).set('Accept', 'application/json')
         .set('Authorization',token)
            
-            expect(res.status).toBe(200)
-            expect(res.body.message).toBe("UnauthorizedError: Access denied!")
+            expect(res.status).toBe(400)
+            expect(res.body.message).toBe("ForbiddenError: Access denied!")
        });
 
        it('get card by Id', async()=> {
@@ -251,14 +253,14 @@ describe('User Route', function() {
     
        });
     
-       it('dont update card by Id', async()=> {
+       it('dont update card of any other user', async()=> {
     
         const res =  await request(app).patch('/cards/'+ testData.helperCard._id).set('Accept', 'application/json')
         .set('Authorization',token).send(testData.cardUpdate)
            
            
-        expect(res.status).toBe(200)
-        expect(res.body.message).toBe("UnauthorizedError: Access denied!")
+        expect(res.status).toBe(400)
+        expect(res.body.message).toBe("ForbiddenError: Access denied!")
     
     
        });
@@ -284,13 +286,13 @@ describe('User Route', function() {
 
     describe("delete functions", function(){
 
-      it('dont delete card by Id', async()=> {
+      it('should not delete any card of any other user', async()=> {
     
         const res =  await request(app).delete('/cards/'+ testData.helperCard._id).set('Accept', 'application/json')
         .set('Authorization',token)
            
-        expect(res.status).toBe(200)
-        expect(res.body.message).toBe("UnauthorizedError: Access denied!")
+        expect(res.status).toBe(400)
+        expect(res.body.message).toBe("ForbiddenError: Access denied!")
     
        });  
 
@@ -304,7 +306,7 @@ describe('User Route', function() {
     
        });
 
-       it('should not delete notebook',async function(){
+       it('should not delete notebook of any other user',async function(){
 
         const resp =  await request(app).post('/user/login').set('Accept', 'application/json').send(testData.helperUser) 
         wrongToken = resp.body.token
@@ -312,8 +314,8 @@ describe('User Route', function() {
         const res = await request(app).delete('/notebooks/'+notebookId).set('Accept', 'application/json')
         .set('Authorization',wrongToken)
 
-        expect(res.status).toBe(200)
-        expect(res.body.message).toBe("UnauthorizedError: Access denied!")
+        expect(res.status).toBe(400)
+        expect(res.body.message).toBe("ForbiddenError: Access denied!")
        })
        
      

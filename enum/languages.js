@@ -2,7 +2,31 @@ const languages={
     English: "ENGLISH",
     German: "GERMAN",
     Spanish: "SPANISH",
-    French: "FRENCH"
+    French: "FRENCH",
+    Italian:"ITALIAN",
+    Portuguese:"PORTUGUESE",
+    Dutch:"DUTCH",
+    Polish:"POLISH",
+    Greek:"GREEK",
+    Finnish:"FINNISH",
+    Norwegian:"NORWEGIAN",
+    Bulgarian:"BULGARIAN",
+    Czech:"CZEHC",
+    Danish:"DANISH",
+    Romanian:"ROMANIAN",
+    Estonian:"ESTONIAN",
+    Croatian:"CROATIAN",
+    Swedish:"SWEDISH",
+    Hungarian:"HUNGARIAN",
+    Latvian:"LATVIAN",
+    Lithuanian:"LITHUANIAN",
+    Slovenian:"SLOVENIAN",
+    Slovak:"SLOVAK",
+    Russian:"RUSSIAN",
+    Chinese:"CHINESE",
+    Japanese:"JAPANESE",
+    Arabic:"ARABIC",
+    Other:"OTHER"
 }
 
 module.exports=languages

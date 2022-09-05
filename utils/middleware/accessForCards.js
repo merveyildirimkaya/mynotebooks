@@ -2,7 +2,7 @@ const Notebook = require("../../model/notebookModel")
 const Card = require("../../model/cardModel")
 const createError = require('http-errors')
 
-const authMiddlewareforCards = async (req,res,next)=>{
+const accessForCards = async (req,res,next)=>{
 
     try {
         const card = await Card.findById({_id:req.params.cardId})
@@ -11,10 +11,10 @@ const authMiddlewareforCards = async (req,res,next)=>{
             req.card = card
             next()
         }else
-       throw new Error(createError(401,"Access denied!"))
+       throw new Error(createError(403,"Access denied!"))
     } catch (error) {
         next(error)
     }
 }
 
-module.exports= authMiddlewareforCards
+module.exports= accessForCards

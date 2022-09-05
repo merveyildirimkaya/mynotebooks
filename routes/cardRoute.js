@@ -2,17 +2,17 @@ const express = require("express")
 const router = express.Router()
 const {createCard, getAllCards, getCardById,updateCard,deleteCard} = require("../controller/cardController")
 const authMiddleware = require("../utils/middleware/authMiddleware")
-const authforNotebooks = require("../utils/middleware/authForNotebooks")
-const authforCards = require("../utils/middleware/authforCards")
+const accessForNotebooks = require("../utils/middleware/accesForNotebooks")
+const accessForCards = require("../utils/middleware/accessForCards")
 
-router.post('/:notebookId', authMiddleware, authforNotebooks, createCard)
+router.post('/:notebookId', authMiddleware, accessForNotebooks, createCard)
 
-router.get('/getAll/:notebookId',authMiddleware,authforNotebooks, getAllCards)
+router.get('/getAll/:notebookId',authMiddleware,accessForNotebooks, getAllCards)
 
-router.get('/:cardId', authMiddleware, authforCards, getCardById)
+router.get('/:cardId', authMiddleware, accessForCards, getCardById)
 
-router.patch('/:cardId', authMiddleware, authforCards, updateCard)
+router.patch('/:cardId', authMiddleware, accessForCards, updateCard)
 
-router.delete('/:cardId', authMiddleware, authforCards, deleteCard)
+router.delete('/:cardId', authMiddleware, accessForCards, deleteCard)
 
 module.exports=router

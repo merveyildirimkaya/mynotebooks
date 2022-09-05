@@ -6,6 +6,7 @@ const notebookRoute=require('./routes/notebookRoute')
 const cardRoute = require('./routes/cardRoute')
 const errorHandler = require("./utils/middleware/errorHandling")
 
+
 db.connectDatabase()
 
 

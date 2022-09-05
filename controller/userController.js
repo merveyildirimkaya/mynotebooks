@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt');
 const saltRounds = 10;
 const createError = require('http-errors')
 const jwt = require('jsonwebtoken');
-
+require("dotenv").config() 
 
 const register= async (req,res,next)=>{
     try {
@@ -35,7 +35,7 @@ const login= async(req,res,next)=>{
 
       if(result){
       const user = await User.findOne({userName:value.userName},'-__v -password')
-      const token = jwt.sign({userId:user._id, password:user.password}, 'mynotebook',{ expiresIn: '1h' });
+      const token = jwt.sign({userId:user._id, password:user.password}, process.env.SECRET_KEY ,{ expiresIn: '1h' });
             res.json({
                 user:user,
                 token:token})

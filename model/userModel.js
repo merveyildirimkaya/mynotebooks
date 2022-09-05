@@ -2,6 +2,7 @@ const mongoose = require("mongoose")
 const { Schema } = mongoose;
 const Joi = require('joi');
 
+
 const userSchema = new Schema({
   name:{
     type: String, 
@@ -45,6 +46,7 @@ userSchema.statics.joiValidationforRegister=(userObject)=>{
 userSchema.statics.joiValidation=(userObject)=>{
    return schema.validate(userObject)
 }
+
 
 const User = mongoose.model('users', userSchema);
 

@@ -3,12 +3,12 @@ const router = express.Router()
 const deleteRelatedCards = require("../utils/middleware/deleteRelatedCards")
 const {createNotebook, getNotebooks, deleteNoteBook} = require("../controller/notebookController")
 const authMiddleware = require("../utils/middleware/authMiddleware")
-const authforNotebooks = require("../utils/middleware/authForNotebooks")
+const accessforNotebooks = require("../utils/middleware/accesForNotebooks")
 
 router.post("/", authMiddleware, createNotebook)
 
 router.get("/", authMiddleware ,getNotebooks)
 
-router.delete("/:notebookId",authMiddleware, authforNotebooks,deleteRelatedCards, deleteNoteBook)
+router.delete("/:notebookId",authMiddleware, accessforNotebooks,deleteRelatedCards, deleteNoteBook)
 
 module.exports= router

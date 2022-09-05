@@ -1,8 +1,9 @@
 const  mongoose = require("mongoose");
+require("dotenv").config()
 
 const connectDatabase = async()=>{
-
-    await mongoose.connect('mongodb://localhost:27017/mynotebook');
+    
+    await mongoose.connect(process.env.DB_CONNECTION_STRING);
 
 }
 
