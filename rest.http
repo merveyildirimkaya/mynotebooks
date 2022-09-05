@@ -1,17 +1,17 @@
 
 ###
-POST http://localhost:3000/user/register 
+POST https://mynoteboooks.herokuapp.com/user/register 
 content-type: application/json
 
 {
     "name":"testing",
     "surname":"testing",
-    "userName":"tng",
+    "userName":"dsfasdftng",
     "password":"testing"
 }
 
 ###
-POST https://mynoteboooks.herokuapp.com//user/login
+POST https://mynoteboooks.herokuapp.com/user/login
 content-type: application/json
 
 {
@@ -47,7 +47,7 @@ Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzEwODc5ZTc1Z
 ###
 POST http://localhost:3000/notebooks
 content-type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzBlMzBmMjExYzVlODY0NzM5YjQwMDciLCJpYXQiOjE2NjIzNzUxMzQsImV4cCI6MTY2MjM3ODczNH0.mc3KIOTyEOH18_vCOAYUKVp5uvEaf_0XpTNgU5rl90I
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzE2MWUwYTFmN2I5YTdlMmI4YzYwYzQiLCJpYXQiOjE2NjI0MDg1OTAsImV4cCI6MTY2MjQxMjE5MH0.KTlaT5YVS1w4wHurCL15Fo6eE0cnvPwxhkTdpmcBO8E
 
 {
     "language":"GERMAN"

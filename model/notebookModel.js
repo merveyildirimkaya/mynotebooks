@@ -10,7 +10,8 @@ const notebookSchema = new Schema({
     },
     language:{
         type: String,
-        enum:Object.values(languages)
+        enum:Object.values(languages),
+        required:true
     }
 })
 

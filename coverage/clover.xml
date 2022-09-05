@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1662391621890" clover="3.2.0">
-  <project timestamp="1662391621891" name="All files">
+<coverage generated="1662409268156" clover="3.2.0">
+  <project timestamp="1662409268156" name="All files">
     <metrics statements="253" coveredstatements="243" conditionals="24" coveredconditionals="21" methods="23" coveredmethods="23" elements="300" coveredelements="287" complexity="0" loc="253" ncloc="253" packages="7" files="19" classes="19"/>
     <package name="mynotebook">
       <metrics statements="14" coveredstatements="14" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
@@ -172,8 +172,8 @@
         <line num="2" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
         <line num="5" count="1" type="stmt"/>
-        <line num="17" count="1" type="stmt"/>
-        <line num="19" count="1" type="stmt"/>
+        <line num="18" count="1" type="stmt"/>
+        <line num="20" count="1" type="stmt"/>
       </file>
       <file name="userModel.js" path="C:\Users\ASUS\Desktop\mynotebook\model\userModel.js">
         <metrics statements="12" coveredstatements="12" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
