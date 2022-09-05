@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1662389321767" clover="3.2.0">
-  <project timestamp="1662389321767" name="All files">
-    <metrics statements="251" coveredstatements="242" conditionals="24" coveredconditionals="21" methods="23" coveredmethods="23" elements="298" coveredelements="286" complexity="0" loc="251" ncloc="251" packages="7" files="19" classes="19"/>
+<coverage generated="1662391621890" clover="3.2.0">
+  <project timestamp="1662391621891" name="All files">
+    <metrics statements="253" coveredstatements="243" conditionals="24" coveredconditionals="21" methods="23" coveredmethods="23" elements="300" coveredelements="287" complexity="0" loc="253" ncloc="253" packages="7" files="19" classes="19"/>
     <package name="mynotebook">
       <metrics statements="14" coveredstatements="14" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       <file name="app.js" path="C:\Users\ASUS\Desktop\mynotebook\app.js">
@@ -238,14 +238,16 @@
       </file>
     </package>
     <package name="mynotebook.utils.db">
-      <metrics statements="5" coveredstatements="5" conditionals="2" coveredconditionals="2" methods="1" coveredmethods="1"/>
+      <metrics statements="7" coveredstatements="6" conditionals="2" coveredconditionals="2" methods="1" coveredmethods="1"/>
       <file name="dbConnection.js" path="C:\Users\ASUS\Desktop\mynotebook\utils\db\dbConnection.js">
-        <metrics statements="5" coveredstatements="5" conditionals="2" coveredconditionals="2" methods="1" coveredmethods="1"/>
+        <metrics statements="7" coveredstatements="6" conditionals="2" coveredconditionals="2" methods="1" coveredmethods="1"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
         <line num="4" count="1" type="stmt"/>
+        <line num="5" count="1" type="stmt"/>
         <line num="6" count="1" type="cond" truecount="2" falsecount="0"/>
-        <line num="10" count="1" type="stmt"/>
+        <line num="8" count="0" type="stmt"/>
+        <line num="13" count="1" type="stmt"/>
       </file>
     </package>
     <package name="mynotebook.utils.middleware">
