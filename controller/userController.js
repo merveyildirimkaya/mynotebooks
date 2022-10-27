@@ -37,7 +37,6 @@ const login= async(req,res,next)=>{
       const user = await User.findOne({userName:value.userName},'-__v -password')
       const token = jwt.sign({userId:user._id, password:user.password}, process.env.SECRET_KEY ,{ expiresIn: '1h' });
             res.json({
-                user:user,
                 token:token})
         } else throw Error(createError(400,"Invalid Credentials"))
     } catch (error) {
@@ -45,6 +44,19 @@ const login= async(req,res,next)=>{
     }
 }
 
+const getUser = async(req,res,next)=>{
+   
+    try {
+        res.json({
+            _id:req.user._id,
+            name:req.user.name,
+            surname:req.user.surname,
+            userName:req.user.userName
+        })
+    } catch (error) {
+        next(error)
+    }
+}
 
 const updateProfil=async(req,res,next)=>{
 
@@ -90,4 +102,4 @@ const deleteAccount=async(req,res,next)=>{
        next(error)
     }
 }
-module.exports = {register,login,deleteAccount,updateProfil,changePassword}
+module.exports = {register,login,deleteAccount,updateProfil,changePassword,getUser}

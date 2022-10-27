@@ -3,11 +3,13 @@ const router = express.Router()
 const authMiddleware = require("../utils/middleware/authMiddleware")
 const deleteNotebooks = require("../utils/middleware/deleteRelatedNotebook")
 const deleteCards = require("../utils/middleware/deleteRelatedCards")
-const { register,login, deleteAccount, updateProfil, changePassword} = require('../controller/userController')
+const { register,login, deleteAccount, updateProfil, changePassword,getUser} = require('../controller/userController')
 
 router.post('/register', register)
 
 router.post('/login', login)
+
+router.get('/',authMiddleware,getUser)
 
 router.delete('/', authMiddleware, deleteCards, deleteNotebooks, deleteAccount)
 

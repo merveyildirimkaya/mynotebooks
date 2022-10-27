@@ -1,23 +1,27 @@
 
 ###
-POST https://mynoteboooks.herokuapp.com/user/register 
+POST http://localhost:3000/user/register 
 content-type: application/json
 
 {
-    "name":"testing",
-    "surname":"testing",
-    "userName":"dsfasdftng",
-    "password":"testing"
+    "name":"deneme",
+    "surname":"deneme",
+    "userName":"deneme",
+    "password":"deneme"
 }
 
 ###
-POST https://mynoteboooks.herokuapp.com/user/login
+POST http://localhost:3000/user/login
 content-type: application/json
 
 {
-    "userName":"chandlerbing",
-    "password":"123456"
+    "userName":"deneme",
+    "password":"deneme"
 }
+
+###
+GET  http://localhost:3000/user
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzVhOWRiNzQ0ZWJlNmU2ZTNjNTMzZWEiLCJpYXQiOjE2NjY4ODMwMDYsImV4cCI6MTY2Njg4NjYwNn0.qEBj5ngwcL_qYk-HLFYKqVi-PpTIxDTSD6klxnLe7hE
 
 ###
 DELETE  http://localhost:3000/user
