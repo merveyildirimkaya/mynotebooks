@@ -29,7 +29,11 @@ const deleteNoteBook = async(req,res,next)=>{
     try 
     { 
         await Notebook.deleteOne({_id:req.notebook._id})
-        res.json({message:"notebook has been deleted"})
+        res.json({
+            _id:req.notebook._id,
+            userId:req.notebook.userId,
+            language:req.notebook.language
+        })
     } catch (error) {
        next(error)
     }

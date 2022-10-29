@@ -95,9 +95,18 @@ const changePassword =async(req,res)=>{
 }
 
 const deleteAccount=async(req,res,next)=>{
+
+    
     try { 
             await User.deleteOne({_id:req.user._id})
-            res.json({message:"User has been deleted"})     
+            
+            res.json({
+                _id:req.user._id,
+                name:req.user.name,
+                surname:req.user.surname,
+                userName:req.user.userName
+            })    
+        
     }catch(error){
        next(error)
     }

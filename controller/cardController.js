@@ -47,7 +47,7 @@ const updateCard= async(req,res,next)=>{
 const deleteCard= async(req,res,next)=>{
     try {
             await Card.findByIdAndDelete({_id:req.card._id})
-            return res.json({message:"card has been deleted"})
+            return res.json(req.card)
     } catch (error) {
         next(error)
     }
