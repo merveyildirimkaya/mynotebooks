@@ -17,9 +17,10 @@ const createNotebook= async(req,res,next)=>{
 const getNotebooks = async (req,res,next)=>{
     try {    
             const myNotebooks = await Notebook.find({userId:req.user},'-__v')
-            if(myNotebooks.length>0){
-            res.json(myNotebooks)}
-            else throw Error(createError(404,"Not Found"))
+           // if(myNotebooks.length>0){
+            res.json(myNotebooks)
+        //}
+           // else throw Error(createError(404,"Not Found"))
     } catch (error) {
         next(error)
     }
