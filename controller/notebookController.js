@@ -15,7 +15,7 @@ const createNotebook= async(req,res,next)=>{
       
             const newNotebook= new Notebook(req.notebook)
             await newNotebook.save()
-            const notebook = await Notebook.findById({_id:newNotebook._id},'-__v')
+            const notebook = await Notebook.findById({_id:newNotebook._id},'-__v').populate('language')
             res.json(notebook)
         
     } catch (error) {
