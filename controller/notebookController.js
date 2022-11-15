@@ -1,10 +1,19 @@
 const Notebook= require("../model/notebookModel")
-const createError = require('http-errors')
+const Language = require("../model/languageModel")
+
 const createNotebook= async(req,res,next)=>{
 
     try {
-            req.body.userId=req.user
-            const newNotebook= new Notebook(req.body)
+            
+            const language = await Language.findOne({language:req.body.language})
+          
+            req.notebook={
+                userId:req.user,
+                language:language
+            }
+
+      
+            const newNotebook= new Notebook(req.notebook)
             await newNotebook.save()
             const notebook = await Notebook.findById({_id:newNotebook._id},'-__v')
             res.json(notebook)
@@ -16,7 +25,7 @@ const createNotebook= async(req,res,next)=>{
 }
 const getNotebooks = async (req,res,next)=>{
     try {    
-            const myNotebooks = await Notebook.find({userId:req.user},'-__v')
+            const myNotebooks = await Notebook.find({userId:req.user},'-__v').populate('language')
            // if(myNotebooks.length>0){
             res.json(myNotebooks)
         //}

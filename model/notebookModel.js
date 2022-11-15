@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const {Schema}= mongoose
-const languages= require("../enum/languages")
+//const languages= require("../enum/languages")
 
 const notebookSchema = new Schema({
     userId:{
@@ -9,8 +9,10 @@ const notebookSchema = new Schema({
         required:true
     },
     language:{
-        type: String,
-        enum:Object.values(languages),
+        // type: String,
+        // enum:Object.values(languages),
+        type: Schema.Types.ObjectId, 
+        ref: 'languages',
         required:true
     }
 })
