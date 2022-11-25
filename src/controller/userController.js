@@ -220,6 +220,7 @@ const forgotPassword = async (req,res,next)=>{
             },(error,info)=>{
                 if(error){
                     console.log(error)
+                    throw new Error(error)
                 }else {
                     console.log('mail gönderildi')
                     transporter.close()
@@ -228,6 +229,7 @@ const forgotPassword = async (req,res,next)=>{
             })
         } catch (error) {
             console.log(error)
+            next(error)
         }
         
     }
