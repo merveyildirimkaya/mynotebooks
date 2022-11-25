@@ -222,8 +222,8 @@ const forgotPassword = async (req,res,next)=>{
                     console.log(error)
                 }else {
                     console.log('mail gönderildi')
-                    console.log(info)
                     transporter.close()
+                    res.json({msg:"Please check your mailbox"})
                 }
             })
         } catch (error) {
