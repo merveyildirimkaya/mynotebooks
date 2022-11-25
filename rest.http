@@ -5,9 +5,9 @@ content-type: application/json
 
 {
     "name":"deneme",
-    "surname":"deneme",
     "userName":"deneme",
-    "password":"deneme"
+    "email":"deneme@gmail.com",
+    "password":"611094"
 }
 
 ###
@@ -20,8 +20,16 @@ content-type: application/json
 }
 
 ###
+POST http://localhost:3000/user/forgot-password
+content-type: application/json
+
+{
+    "email":"syldrmkaya@gmail.com"
+}
+
+###
 GET  http://localhost:3000/user
-Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzczYTJiMzY1MDUzMzkzY2U3NDU2M2QiLCJpYXQiOjE2Njg1MjU0NDAsImV4cCI6MTY2ODUyOTA0MH0.T5EUhycFo8u7uX9pgpEyFr05lkX4s9l1LKy-TniO3Nc
+Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzgwZjYzZDYyZmFiOTEwZDA1Mzk3ZWYiLCJpYXQiOjE2NjkzOTYwODksImV4cCI6MTY2OTM5OTY4OX0.rtfb1mQyPhqqO_CC7HmsnCOJBO80GZQwlXrn9eXmkDw
 
 ###
 DELETE  http://localhost:3000/user
@@ -29,30 +37,28 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzczYWQ5ZTky
 
 ###
 PATCH   http://localhost:3000/user
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzczYWQ5ZTkyZWI4YTMyNWY1NDRmNWMiLCJpYXQiOjE2Njg1MjU0NzIsImV4cCI6MTY2ODUyOTA3Mn0.3HrIXfQwCJVZHfIycfEuiU5AVgVYgHW16Ip5jNNuE_M
+Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzgwZjYzZDYyZmFiOTEwZDA1Mzk3ZWYiLCJpYXQiOjE2NjkzOTYwODksImV4cCI6MTY2OTM5OTY4OX0.rtfb1mQyPhqqO_CC7HmsnCOJBO80GZQwlXrn9eXmkDw
 content-type: application/json
 
 {
-    "name":"updated",
-    "surname":"updated",
-    "userName":"updated2",
-    "password":"updated"
+    "name":"deneme",
+    "userName":"deneme"
 }
 
 ###
 PATCH   http://localhost:3000/user/changePassword
 content-type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzczYWQ5ZTkyZWI4YTMyNWY1NDRmNWMiLCJpYXQiOjE2Njg1MjU0NzIsImV4cCI6MTY2ODUyOTA3Mn0.3HrIXfQwCJVZHfIycfEuiU5AVgVYgHW16Ip5jNNuE_M
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzgwZjYzZDYyZmFiOTEwZDA1Mzk3ZWYiLCJpYXQiOjE2NjkzOTYwODksImV4cCI6MTY2OTM5OTY4OX0.rtfb1mQyPhqqO_CC7HmsnCOJBO80GZQwlXrn9eXmkDw
 
 {
-    "password":"611094"
+    "password":"deneme"
 }
 
 
 ###
 POST http://localhost:3000/notebooks
 content-type: application/json
-Authorization:  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzczYWQ5ZTkyZWI4YTMyNWY1NDRmNWMiLCJpYXQiOjE2Njg1MjU0NzIsImV4cCI6MTY2ODUyOTA3Mn0.3HrIXfQwCJVZHfIycfEuiU5AVgVYgHW16Ip5jNNuE_M
+Authorization:  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzgwZjYzZDYyZmFiOTEwZDA1Mzk3ZWYiLCJpYXQiOjE2NjkzOTYwODksImV4cCI6MTY2OTM5OTY4OX0.rtfb1mQyPhqqO_CC7HmsnCOJBO80GZQwlXrn9eXmkDw
 
 {
     "language":"ENGLISH"
@@ -60,20 +66,20 @@ Authorization:  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzczYWQ5ZTk
 
 ###
 GET http://localhost:3000/notebooks
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzczYWQ5ZTkyZWI4YTMyNWY1NDRmNWMiLCJpYXQiOjE2Njg1MjU0NzIsImV4cCI6MTY2ODUyOTA3Mn0.3HrIXfQwCJVZHfIycfEuiU5AVgVYgHW16Ip5jNNuE_M
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzgwZjYzZDYyZmFiOTEwZDA1Mzk3ZWYiLCJpYXQiOjE2NjkzOTYwODksImV4cCI6MTY2OTM5OTY4OX0.rtfb1mQyPhqqO_CC7HmsnCOJBO80GZQwlXrn9eXmkDw
 
 ###
 DELETE http://localhost:3000/notebooks/6373adcb92eb8a325f544f69
 Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzVkODNjMDg3YTU4MGJiZjVlYjcwYjQiLCJpYXQiOjE2Njc5OTcxMTMsImV4cCI6MTY2ODAwMDcxM30.PbkaFgLCpNJ-J37mkSR3rvD5YuhYP_lYTQgDKF7xmNo
 
 ###
-POST  http://localhost:3000/cards/6373adcb92eb8a325f544f69
+POST  http://localhost:3000/cards/637e036b159f9ce3c5fc7dee
 content-type: application/json
-Authorization:   eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzczYWQ5ZTkyZWI4YTMyNWY1NDRmNWMiLCJpYXQiOjE2Njg1MjU0NzIsImV4cCI6MTY2ODUyOTA3Mn0.3HrIXfQwCJVZHfIycfEuiU5AVgVYgHW16Ip5jNNuE_M
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzdjOGQxZTJmNDM3MzI5MDIzZTZhOGQiLCJpYXQiOjE2NjkyMDI3NjIsImV4cCI6MTY2OTIwNjM2Mn0.fc4AlOBKUq834ZlJMwiNk8TKf0akiKBn9YDalm6Gs0k
 
 {
-    "type":"VERB",
-    "phrase":"to try",
+    "type":"VERB1",
+    "phrase":"to try10",
     "definition": "to try",
     "tabooOne":"try",
     "tabooTwo":"try",
@@ -83,6 +89,12 @@ Authorization:   eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzczYWQ5ZT
 ###
 GET  http://localhost:3000/cards/getAll/6373adcb92eb8a325f544f69
 Authorization:   eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzczYWQ5ZTkyZWI4YTMyNWY1NDRmNWMiLCJpYXQiOjE2Njg1MjU0NzIsImV4cCI6MTY2ODUyOTA3Mn0.3HrIXfQwCJVZHfIycfEuiU5AVgVYgHW16Ip5jNNuE_M
+
+
+
+###
+GET  http://localhost:3000/cards/getRandom/637e036b159f9ce3c5fc7dee
+Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzdjOGQxZTJmNDM3MzI5MDIzZTZhOGQiLCJpYXQiOjE2NjkyMDM0NzksImV4cCI6MTY2OTIwNzA3OX0.UgN6bUynl5YwhIpPCWncPPzhBtCLfh8FDPHNAOeD6S4
 
 
 ###
