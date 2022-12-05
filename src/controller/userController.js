@@ -78,7 +78,8 @@ const verifyEmail = async(req, res, next)=>{
 
     if(value){
         const user = await User.findByIdAndUpdate(value.id, {isEmailActive:true})
-        res.send("EMAIL SUCCESSFULLY VERIFIED, PLEASE LOGIN")
+        req.flash('success_message', [{msg:"Email has been verified!"}])
+        res.redirect('/user/info')
     }
 }
 
@@ -120,7 +121,7 @@ const resetPasswordForm = async (req,res,next)=>{
                     {
                         if(error){
                             req.flash('error', 'Kod Hatali veya süresi gecmis')
-                            res.redirect('/forgot-password')
+                            res.redirect('/user/info')
                         }
                         else
                         {
@@ -136,6 +137,10 @@ const resetPasswordForm = async (req,res,next)=>{
 
    
   
+}
+
+const info =async(req, res, next)=>{
+    res.render('information',{layout: './layout/auth_layout.ejs'})
 }
 
 
@@ -167,9 +172,9 @@ const resetPassword= async (req,res,next)=>{
                 const hashedPass =  await bcrypt.hash(req.body.password,10)
                 
                 await User.findByIdAndUpdate({_id:decoded.id},{password:hashedPass})
-                
-                req.flash('success_message', [{msg:"Password successfully changed"}])
-                res.send("Pass has changed")
+
+             req.flash('success_message', [{msg:"Password has been changed"}])
+             res.redirect('/user/info')  
             }else console.log(error)
         })
 
@@ -305,11 +310,10 @@ const deleteAccount=async(req,res,next)=>{
 
 const uploadPhoto = async(req,res,next)=>{
     try {
-        const user = await User.findByIdAndUpdate({_id:req.user._id},{image:req.file.filename})
-      
+        await User.findByIdAndUpdate({_id:req.user._id},{image:req.file.filename})
+        res.json({message:"photo successfully uploaded!"})
     } catch (error) {
         console.log(error)
-        
     }
 }
 
@@ -321,5 +325,5 @@ const getUploadedPhoto = async(req,res,next)=>{
 module.exports = {register,login,deleteAccount,
     updateProfil,changePassword,getUser,
     verifyEmail,resetPasswordForm,forgotPassword,
-    resetPassword,uploadPhoto,getUploadedPhoto
+    resetPassword,uploadPhoto,getUploadedPhoto,info
 }

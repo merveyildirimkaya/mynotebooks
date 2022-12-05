@@ -5,7 +5,7 @@ const deleteNotebooks = require("../utils/middleware/deleteRelatedNotebook")
 const deleteCards = require("../utils/middleware/deleteRelatedCards")
 const { register,login, deleteAccount, updateProfil, 
     changePassword,getUser, verifyEmail,resetPasswordForm,resetPassword,
-    forgotPassword,uploadPhoto, getUploadedPhoto
+    forgotPassword,uploadPhoto, getUploadedPhoto, info
 } = require('../controller/userController')
 
 const validationMiddleware = require('../utils/middleware/validationMiddleware')
@@ -19,6 +19,7 @@ router.post('/login', login)
 router.get('/verify', verifyEmail)
 
 router.post('/forgot-password', forgotPassword)
+router.get('/info', info)
 
 router.get('/reset-password/:_id/:token', resetPasswordForm)
 
