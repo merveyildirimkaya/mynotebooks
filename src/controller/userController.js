@@ -17,12 +17,15 @@ const register= async (req,res,next)=>{
         newUser.password=hash
 
         const user = await User.findOne({userName: newUser.userName})  
-        if(!user) { await newUser.save()}
+        if(user && user.isEmailActive) throw Error(createError(400, "Username is already in use"))
+
+        else if(!user) { 
+            await newUser.save()
+        }
         else if(user && !user.isEmailActive){
            await User.findByIdAndRemove({_id: user._id})
            await newUser.save()
         }
-        else if(user && user.isEmailActive) throw Error(createError(400, "Username is already in use"))
     
 
         // generate jwt
